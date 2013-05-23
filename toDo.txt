@@ -1,0 +1,6 @@
+To Do List:
+
+	- Remove the text from the input area after submit. 
+	- Remove user from the users list once they've left.
+	- Add a user disconnected message. 
+	- Remove the semicolon from the "Connected" message. 
