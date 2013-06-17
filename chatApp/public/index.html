@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Deployd Todos</title>
+
+
+  <script src="lib/moment.js"></script>
+  <script src="lib/angular/angular.js"></script>
+
+
+  <link rel="stylesheet" type="text/css" href="css/style.css"/>
+  <link rel="stylesheet" type="text/css" href="css/foundation.css"/>
+  <style type="text/css">
+
+  #chatbox {
+    margin-top: 20px;
+    padding: 10px;
+    height: 300px;
+    border: 1px #CCCCCC solid;
+    overflow-y: scroll;
+  }
+
+  </style>
+</head>
+<body ng-app="chatApp">
+
+  <div class = "panel">
+    <h3>ChatApp</h3>
+  </div>
+
+  <div ng-view></div>
+
+  <script type="text/javascript" src="/js/bellController.js"></script>
+  <script type="text/javascript" src="/js/chatController.js"></script>
+  <script type="text/javascript" src="/dpd.js"></script>
+  
+</body>
+</html>

@@ -1,0 +1,16 @@
+<div id="mainWindow" ng-init="getMessages()">
+	<div class="container">
+		<ul style="margin-top:30px; margin-bottom:30px;">
+			<li class="panel" ng-repeat="message in messages">
+				<h5 style= "color:#2BA6CB">{{message.sender}}:</h5> <h5 ng:bind-html-unsafe="message.message"></h5></span>
+			</li>
+		</ul>
+		<form class="form-inline">
+			<input type="text" class="input-small" ng-model="sender" placeholder="Screen name" />
+			<input type="text" class="input-xlarge" ng-model="message" />
+			<button id="send-btn" class="button" ng-click="addMessage(sender, message, roomID); message=''" >Send</button>
+		</form>
+
+		<script type="text/javascript" src="/js/chatController.js"></script>
+	</div>
+</div>
