@@ -1,0 +1,37 @@
+#mainWindow{
+	
+	width: 70%;
+	height: 70%;
+	margin-left: 10%;
+	margin-top: 5%;
+	position: absolute;
+	float:center;
+	z-index: 1;
+
+}
+
+div ul li{
+	list-style-type: none;
+	margin-bottom:0;
+
+}
+
+#mainWindow .connectedUsers{
+	padding: 1%;
+	
+	height:70%;
+	width:15%;
+}
+#mainWindow .chatWindow{
+
+}
+.highlighted{
+  background-color:rgb(206, 206, 206);
+ }
+ .panel{
+ 	background-color: rgb(171,171,171);
+ 	background: rgb(171,171,171);
+ }
+h5{
+	display: inline;
+}
