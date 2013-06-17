@@ -1,0 +1,97 @@
+
+<!DOCTYPE html>
+
+<html ng-app="chatApp" >
+<head>
+
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+
+
+ <script src="lib/moment.js"></script>
+ <script src="lib/angular/angular.js"></script>
+ <link rel="stylesheet" type="text/css" href="css/canvasStyle.css">
+ <link rel="stylesheet" type="text/css" href="css/style.css">
+ <link rel="stylesheet" type="text/css" href="css/foundation.css" />
+
+ <title>ChatApp</title>
+</head>
+
+<body>
+
+
+  <div class = "panel">
+    <h3>ChatApp</h3>
+  </div>
+
+
+
+  <div ng-controller="MainCtrl" class="content" id="mainWindow">
+
+    <div class="row">
+
+      <div class="nine columns chatWindow" style = "width:66%">
+
+        <div class="row">
+
+          <div class="nine columns" style="width:66%;">
+
+            <h2 ng-show="change">User Name: {{user}} </h2>
+            <input ng-hide="change" ng-model="user" placeholder="       User Name" type="text" style="width:40%; margin-left:60%;margin-top:1.18%;"/>
+
+          </div>
+
+
+          <div class="three columns" style="width:33%;">
+
+            <a class= "button" ng-click ="modifyName(user); change =! change">{{change && "Change" || "Done"}}<a>
+
+            </div>
+
+          </div><!-- end of row -->
+
+          <ul style="margin-top:30px; margin-bottom:30px;">
+
+            <li class="panel" ng-repeat="message in conversation">
+              <span><h5 style= "color:#2BA6CB">{{getUserName(message.ID)}}:</h5> <h5>{{message.text}}</h5> </span>
+            </li>
+
+          </ul>
+
+
+          <form ng-submit="submit()"  class="row">
+            <div class="nine columns" style="width:66%;">
+              <input type="text"  ng-model="message" style="width:100%;margin-top:1.18%;"/>
+            </div>
+
+            <div class="three columns" style="width:33%;">
+              <input style="width:66%;"class="button" id="submit" value="submit"/>
+            </div>
+          </form>
+
+        </div><!-- end of chatWindow -->
+
+        <div class="three columns connectedUsers"style = "width:33%;height:70%">
+
+          <h3 style = "color:#2BA6CB" >Online Users</h3>
+
+          <li class="panel" ng-repeat="user in userList">
+           <h5> {{user.name}}</h5>
+         </li>
+
+       </div><!-- end of connectedUsers -->
+
+
+     </div><!--end of row -->
+   </div><!--end of mainController -->
+
+   <canvas id="canvasId"  style = "opacity: .1;"></canvas>
+
+
+   <script src="js/canvasScript.js"></script>
+   <script src="js/app.js"></script>
+   <script src="js/controllers.js"></script>
+   <script src="js/services.js"></script>
+
+ </body>
+ </html>
