@@ -29,7 +29,7 @@ chatApp.factory('chatRoom', function($routeParams, $http){
   };
 
   roomService.getDate = function(date){
-    return moment.unix(date).fromNow();
+    return moment(date).fromNow();;
   }
 
   return roomService;
