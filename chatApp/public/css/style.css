@@ -1,37 +1,64 @@
-#mainWindow{
-	
-	width: 70%;
-	height: 70%;
-	margin-left: 10%;
-	margin-top: 5%;
-	position: absolute;
-	float:center;
-	z-index: 1;
-
-}
-
 div ul li{
 	list-style-type: none;
 	margin-bottom:0;
+}
 
+h5{
+	display: inline;
+}
+
+#mainWindow{	
+	width: 70%;
+	height: 70%;
+	margin-left: 10%;
+	margin-top: 2%;
+	position: absolute;
+	float:center;
+	z-index: 1;
+}
+
+#send-btn{
+	width:20%;
 }
 
 #mainWindow .connectedUsers{
 	padding: 1%;
-	
 	height:70%;
 	width:15%;
 }
-#mainWindow .chatWindow{
 
+#chatbox {
+    margin-top: 20px;
+    padding: 10px;
+    height: 300px;
+    border: 1px #CCCCCC solid;
+    overflow-y: scroll;
 }
+
 .highlighted{
-  background-color:rgb(206, 206, 206);
- }
- .panel{
- 	background-color: rgb(171,171,171);
- 	background: rgb(171,171,171);
- }
-h5{
-	display: inline;
+	background-color:rgb(206, 206, 206);
+}
+
+.panel{
+	background-color: rgb(171,171,171);
+	background: rgb(171,171,171);
+}
+
+.message{
+	margin-bottom:5px;
+}
+
+.messageBox{
+	width:70%;
+}
+
+#conversation{
+	overflow-y: scroll; 
+	min-height:100px; 
+	max-height:300px;
+	margin-bottom:5px;
+}
+
+.floatRight{
+	float:right;
 }

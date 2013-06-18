@@ -1,16 +1,26 @@
 <div id="mainWindow" ng-init="getMessages()">
 	<div class="container">
-		<ul style="margin-top:30px; margin-bottom:30px;">
-			<li class="panel" ng-repeat="message in messages">
-				<h5 style= "color:#2BA6CB">{{message.sender}}:</h5> <h5 ng:bind-html-unsafe="message.message"></h5></span>
+		<input type="text" class="input-small" ng-model="sender" placeholder="Screen name" />
+		<ul id="conversation">
+			<li class="panel message" ng-repeat="message in messages.data">
+				<div class="title">
+					<h5 style= "color:#2BA6CB">{{message.sender}}:</h5>
+					<span class="floatRight">{{getDate()}}</span>
+				</div>
+				<div><h5 ng:bind-html-unsafe="message.message"></h5></div></span>
+			</li>
+			<li class="panel nomessage" ng-show="messages.data.length == 0">
+				<div class="title" style="text-align:center;">
+					<h5>No Messages</h5>
+				</div>
+				<div><h5 ng:bind-html-unsafe="message.message"></h5></div></span>
 			</li>
 		</ul>
 		<form class="form-inline">
-			<input type="text" class="input-small" ng-model="sender" placeholder="Screen name" />
-			<input type="text" class="input-xlarge" ng-model="message" />
-			<button id="send-btn" class="button" ng-click="addMessage(sender, message, roomID); message=''" >Send</button>
+			<div class="messageBox" style="float:left;">
+				<input type="text" class="input-large" ng-model="message" placeholder="Type a message..." />
+			</div>
+			<button id="send-btn" class="button floatRight" ng-click="addMessage(); message=''" >Send</button>
 		</form>
-
-		<script type="text/javascript" src="/js/chatController.js"></script>
 	</div>
 </div>
