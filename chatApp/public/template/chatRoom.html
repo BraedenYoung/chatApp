@@ -5,7 +5,7 @@
 			<li class="panel message" ng-repeat="message in messages.data">
 				<div class="title">
 					<h5 style= "color:#2BA6CB">{{message.sender}}:</h5>
-					<span class="floatRight">{{getDate()}}</span>
+					<span class="floatRight">{{getDate(message.date)}}</span>
 				</div>
 				<div><h5 ng:bind-html-unsafe="message.message"></h5></div></span>
 			</li>
