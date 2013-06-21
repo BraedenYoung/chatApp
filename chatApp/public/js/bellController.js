@@ -8,7 +8,7 @@ chatApp.config(function($routeProvider, $locationProvider){
   controller:"bellController",
   resolve:{
     app:function($route, $location){
-      var id = Math.floor((Math.random()*10000) + 1);
+      var id = Math.floor((Math.random()*100000) + 1);
       console.log(id);
       $location.path("/chatRoom/"+id);
     }
@@ -24,6 +24,7 @@ chatApp.config(function($routeProvider, $locationProvider){
  .otherwise({redirectTo:"/"});
 });
 
+/*
 chatApp.factory('Room', function(){
   return {roomID: "Generate a new room"};
 });
@@ -59,4 +60,4 @@ function bellController($scope, Room){
     $scope.room.roomID = generatedID();
   } 
 
-}
+}*/

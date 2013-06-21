@@ -1,26 +1,71 @@
-<div id="mainWindow" ng-init="getMessages()">
-	<div class="container">
-		<input type="text" class="input-small" ng-model="sender" placeholder="Screen name" />
-		<ul id="conversation">
-			<li class="panel message" ng-repeat="message in messages.data">
-				<div class="title">
-					<h5 style= "color:#2BA6CB">{{message.sender}}:</h5>
-					<span class="floatRight">{{getDate(message.date)}}</span>
+
+<div id="mainWindow" class="content">
+	
+	
+		<div class="row">
+				
+				<div class="nine columns" style="width:66%;">
+					<span ng-show="change">
+						<h2 style="display:inline;">User Name: </h2>
+						<h1 style= "color:#2BA6CB;display:inline; ">{{sender}}</h1>
+					</span>
+					<input ng-hide="change" ng-model="sender" placeholder="Screen Name" type="text" style="width:40%; margin-left:60%;margin-top:1.18%;"/>
 				</div>
-				<div><h5 ng:bind-html-unsafe="message.message"></h5></div></span>
-			</li>
-			<li class="panel nomessage" ng-show="messages.data.length == 0">
-				<div class="title" style="text-align:center;">
-					<h5>No Messages</h5>
+
+				<div class="three columns" style="width:33%;">
+					<a class="button" ng-click ="addUser(); change =! change">{{change && "Change" || "Done"}}<a>
 				</div>
-				<div><h5 ng:bind-html-unsafe="message.message"></h5></div></span>
-			</li>
-		</ul>
-		<form class="form-inline">
-			<div class="messageBox" style="float:left;">
-				<input type="text" class="input-large" ng-model="message" placeholder="Type a message..." />
+
+		</div><!-- end of row -->
+
+		<div class="row">	
+
+			<div class="nine columns">
+				<ul id="conversation">
+					<li class="panel message" ng-repeat="message in messages.data">
+						<div class="title">
+							<h5 style= "color:#2BA6CB">{{message.sender}}:</h5>
+							<span class="floatRight">{{getDate(message.date)}}</span>
+						</div>
+						<div>
+							<h5 ng:bind-html-unsafe="message.message"></h5>
+						</div>
+					</li>
+
+					<li class="panel nomessage" ng-show="messages.data.length == 0">
+
+						<div class="title" style="text-align:center;">
+							<h5>No Messages</h5>
+						</div>
+
+						<div>
+							<h5 ng:bind-html-unsafe="message.message"></h5>
+						</div>
+
+					</li>
+				</ul>
+
+				<form class="form-inline">
+					<div class="messageBox" style="float:left;">
+						<input type="text" class="input-large" ng-disabled="!change || sender.length<1" ng-model="message" placeholder="Type a message..." />
+					</div>
+					<button id="send-btn" class="button floatRight" ng-click="addMessage(); message=''" >Send</button>
+				</form>
+				
 			</div>
-			<button id="send-btn" class="button floatRight" ng-click="addMessage(); message=''" >Send</button>
-		</form>
-	</div>
-</div>
+				
+			<div class="connectedUsers"style = " width:33%;height:70%">
+
+				<h3 style="color:#2BA6CB">Online Users</h3>
+
+				<li class="panel" ng-repeat="user in users.data">
+					<h5>{{user.username}}</h5>
+				</li>
+
+			</div><!-- end of connectedUsers -->
+
+		</div> <!-- end of row -->
+
+</div><!--end of mainWindow -->	
+
+	
