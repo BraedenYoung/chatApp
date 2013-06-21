@@ -1,13 +1,21 @@
 {
-	"type": "UserCollection",
+	"type": "Collection",
 	"properties": {
+		"username": {
+			"name": "username",
+			"type": "string",
+			"typeLabel": "string",
+			"required": true,
+			"id": "username",
+			"order": 0
+		},
 		"roomID": {
 			"name": "roomID",
 			"type": "number",
 			"typeLabel": "number",
 			"required": true,
 			"id": "roomID",
-			"order": 0
+			"order": 1
 		}
 	}
 }

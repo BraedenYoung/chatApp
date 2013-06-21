@@ -12,15 +12,17 @@ chatApp.controller('chatController', function($scope, $timeout, chatRoom){
     	$scope.$apply();
   	});
 
-	dpd.messages.on('delete', function(message) {
+	dpd.messages.on('deleted', function(message) {
     	$scope.messages = chatRoom.getMessages();
     });
 
-  	dpd.users.on('create', function(users){
-  		debugger;
+  	dpd.users.on('create', function(users){ 
   		$scope.users = chatRoom.getUsers();
-  		//$scope.apply();
-  	})
+  	});
+
+ 	dpd.users.on('delete', function(users){
+ 		$scope.users = chatRoom.getUsers;
+ 	});
 	
 	$scope.addMessage = function(){
 		chatRoom.addMessage($scope.sender,$scope.message);
@@ -34,7 +36,6 @@ chatApp.controller('chatController', function($scope, $timeout, chatRoom){
 		return chatRoom.getDate(date);
 	}
 	$scope.countDown = function(){
-		debugger;
 		return chatRoom.runCounter();
 	}
 });

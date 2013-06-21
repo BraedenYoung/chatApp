@@ -1,1 +1,1 @@
-emit('users:create', this);
+emit('users:create', this); 
