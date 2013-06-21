@@ -57,5 +57,14 @@ roomService.getDate = function(date){
   return moment(date).fromNow();
 }
 
+
+roomService.runCounter = function(){
+      countDown -=1;
+      if($scope.countDown>0)
+        $timeout(runCounter,1000);
+    countDown = 100;
+    runCounter();
+}
+
 return roomService;
 });

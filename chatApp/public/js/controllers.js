@@ -1,4 +1,4 @@
-chatApp.controller('chatController', function($scope, chatRoom){
+chatApp.controller('chatController', function($scope, $timeout, chatRoom){
 
 	$scope.messages = chatRoom.getMessages();	
 	$scope.users = chatRoom.getUsers();	    	
@@ -32,5 +32,9 @@ chatApp.controller('chatController', function($scope, chatRoom){
 
 	$scope.getDate = function(date){
 		return chatRoom.getDate(date);
+	}
+	$scope.countDown = function(){
+		debugger;
+		return chatRoom.runCounter();
 	}
 });

@@ -30,18 +30,13 @@
 						<div>
 							<h5 ng:bind-html-unsafe="message.message"></h5>
 						</div>
+						<!--<h6 ng-model="countDown">{{countDown}}<h6>-->
 					</li>
 
 					<li class="panel nomessage" ng-show="messages.data.length == 0">
-
 						<div class="title" style="text-align:center;">
 							<h5>No Messages</h5>
 						</div>
-
-						<div>
-							<h5 ng:bind-html-unsafe="message.message"></h5>
-						</div>
-
 					</li>
 				</ul>
 
@@ -49,17 +44,22 @@
 					<div class="messageBox" style="float:left;">
 						<input type="text" class="input-large" ng-disabled="!change || sender.length<1" ng-model="message" placeholder="Type a message..." />
 					</div>
-					<button id="send-btn" class="button floatRight" ng-click="addMessage(); message=''" >Send</button>
+					<button id="send-btn" class="button floatRight" ng-click="addMessage();  message=''" >Send</button>
 				</form>
-				
+
 			</div>
 				
-			<div class="connectedUsers"style = " width:33%;height:70%">
+			<div class="connectedUsers"style = "  position:fixed; right:8%;  width:20%; height:70%">
 
 				<h3 style="color:#2BA6CB">Online Users</h3>
 
 				<li class="panel" ng-repeat="user in users.data">
 					<h5>{{user.username}}</h5>
+				</li>
+				<li class="panel nomessage" ng-show="users.data.length == 0">
+						<div class="title" style="text-align:center;">
+							<h5>Empty</h5>
+						</div>
 				</li>
 
 			</div><!-- end of connectedUsers -->
