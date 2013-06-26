@@ -1,1 +1,1 @@
-  emit('messages:delete', this);
+
