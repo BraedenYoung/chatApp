@@ -1,26 +1,37 @@
 
-<div id="mainWindow" class="content">
+<div id="mainWindow" class="content ">
 	
 	
-		<div class="row">
+		<div class="row twelve columns">
 				
-				<div class="nine columns" style="width:66%;">
-					<span ng-show="change">
+				<div class="eight columns" style="width:66%;">
+					<span ng-show="change1">
 						<h2 style="display:inline;">User Name: </h2>
 						<h1 style= "color:#2BA6CB;display:inline;">{{sender}}</h1>
 					</span>
-					<input ng-hide="change" ng-model="sender" placeholder="Screen Name" type="text" style="width:40%; margin-left:60%;margin-top:1.18%;"/>
+					<input ng-hide="change1" ng-model="sender" placeholder="Screen Name" type="text" style="width:40%; margin-left:60%;margin-top:1.18%;"/>
 				</div>
 
 				<div class="three columns" style="width:33%;">
-					<a class="button" ng-click ="addUser(); change =! change">{{change && "Change" || "Done"}}<a>
+					<a class="button"  ng-click="addOrDeleteUsers(); change1 =! change1">{{change1 && "Change" || "Done"}}<a>
+				</div>
+				<div class="six columns" style="width:66%;">
+					<span ng-show="change2">
+						<h2 style="display:inline;">Key: </h2>
+						<h1 style= "color:#2BA6CB;display:inline;">{{key}}</h1>
+					</span>
+					<input ng-hide="change2" ng-model="key" placeholder="Encryption Key" type="text" style="width:40%; margin-left:60%;margin-top:1.18%;"/>
+				</div>
+
+				<div class="three columns" style="width:33%;">
+					<a class="button"  ng-click="addKey(); change2 =! change2">{{change2 && "Change" || "Done"}}<a>
 				</div>
 
 		</div><!-- end of row -->
 
 		<div class="row">	
 
-			<div class="nine columns">
+			<div class="small-9 columns">
 				<ul id="conversation">
 					<li class="panel message" ng-repeat="message in messages.data">
 						<div class="title">
@@ -42,14 +53,14 @@
 
 				<form class="form-inline">
 					<div class="messageBox" style="float:left;">
-						<input type="text" class="input-large" ng-disabled="!change || sender.length<1" ng-model="message" placeholder="Type a message..." />
+						<input type="text" class="input-large" ng-disabled="!change1 || sender.length<1" ng-model="message" placeholder="Type a message..." />
 					</div>
 					<button id="send-btn" class="button floatRight" ng-click="addMessage();  message=''">Send</button>
 				</form>
 
 			</div>
 				
-			<div class="connectedUsers"style = "position:fixed; right:8%;  width:20%; height:70%">
+			<div class="connectedUsers small-3 columns">
 
 				<h3 style="color:#2BA6CB">Online Users</h3>
 

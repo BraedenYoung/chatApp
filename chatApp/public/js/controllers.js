@@ -1,9 +1,12 @@
-chatApp.controller('chatController', function($scope, $timeout, chatRoom){
+chatApp.controller('chatController', function($scope, $timeout, chatRoom, blowfish){
 
 	$scope.messages = chatRoom.getMessages();	
 	$scope.users = chatRoom.getUsers();	    	
 	$scope.message = chatRoom.messageText;
 	$scope.sender = "";
+	$scope.key="";
+
+
 	//$scope.username = "";
 
 
@@ -25,17 +28,38 @@ chatApp.controller('chatController', function($scope, $timeout, chatRoom){
  	});
 	
 	$scope.addMessage = function(){
+	
 		chatRoom.addMessage($scope.sender,$scope.message);
 	}	
 	
-	$scope.addUser = function(){
-		chatRoom.addUser($scope.sender);
+	$scope.addOrDeleteUsers = function(change1){
+		if(!change1){
+			chatRoom.addUser($scope.sender);
+		}else{
+			chatRoom.deleteUser($scope.sender);
+		}
 	}
 
 	$scope.getDate = function(date){
 		return chatRoom.getDate(date);
 	}
+	$scope.deleteMessage = function(){
+		chatRoom.deleteMessage();
+	}
+	$scope.deleteUser = function(){
+		chatRoom.deleteMessage();
+	}
+	
+	$scope.addKey = function(){
+		blowfish.init($scope.key);
+	}
+	$scope.getKey = function(){
+		return $scope.key;
+	}
+	
+	/*
 	$scope.countDown = function(){
 		return chatRoom.runCounter();
 	}
+	*/
 });

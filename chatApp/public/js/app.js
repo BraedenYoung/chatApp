@@ -6,7 +6,7 @@ chatApp.config(function($routeProvider, $locationProvider){
  .when("/",
   { resolve:{
     app:function($route, $location){
-      var id = Math.floor((Math.random()*10000) + 1);
+      var id = Math.floor((Math.random()*100000) + 1);
       console.log(id);
       $location.path("/chatRoom/"+id);
     }

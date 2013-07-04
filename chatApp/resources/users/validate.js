@@ -1,5 +1,5 @@
 
-//Non of this code is working :(
+//None of this code is working :(
 
 if (!(this.username.length > 2 && this.username.length < 20)) {
     error('sender', "Screen name must be between 2 and 50 characters");
