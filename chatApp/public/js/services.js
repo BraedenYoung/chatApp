@@ -1,13 +1,17 @@
 chatApp.factory('chatRoom', function($routeParams, $http, blowfish){
   
+
 var roomService = {};
 
  roomService.messageText = "";
 
  roomService.roomID = $routeParams.roomID;
 
+ roomService.gotoRoom = function(){
+    window.location = "#/chatRoom/"+$scope.roomID;
 
- roomService.getMessages = function(){
+ };
+ roomService.getMessages = function(key){
   return $http.get('/messages?roomID='+roomService.roomID)
   .success(function(messages){
     
@@ -24,7 +28,7 @@ var roomService = {};
 roomService.addMessage = function(sender, message){
   var encryptMessage = ''; 
   if(message){
-    encryptedMessage = blowfish.encrypt(message) 
+    encryptedMessage = blowfish.encrypt(message); 
   }
   $http.post('/messages',{
     sender: sender,
@@ -48,7 +52,7 @@ roomService.addUser = function(sender){
   $http.post('/users',{
     username: sender,
     roomID: roomService.roomID
-  }).success(function(username){
+  }).success(function(users){
     roomService.username = "";
     return users.data;
   }).error(function(err){
@@ -59,7 +63,7 @@ roomService.getDate = function(date){
   return moment(date).fromNow();
 };
 roomService.deleteUser = function(userToBeDeleted){
-     debugger;
+
     return $http.get('/users?roomID='+roomService.roomID)
 
     .success(function(users){
@@ -67,7 +71,6 @@ roomService.deleteUser = function(userToBeDeleted){
       users.forEach(function(user){
         if(user.ID == userToBeDeleted.ID){
           $http.delete('/users?=' + user.id,{
-
           });
         }
       });
@@ -75,9 +78,6 @@ roomService.deleteUser = function(userToBeDeleted){
       alert(err.message);
     });
   };
-  
-
-
 
 /*
 roomService.runCounter = function(){
@@ -90,27 +90,53 @@ roomService.runCounter = function(){
 */
 
 return roomService;
-
 });
+
+
 
 chatApp.factory('blowfish', function(){
 
-  var blowfishService = {};
-
+var blowfishService = {};
 
   blowfishService.init = function(key){
     if(key){
-      window.bf = new Blowfish(key);
+      var bf = new Blowfish(key);
     }else{
-      window.bf = new Blowfish('123456');
+      var bf = new Blowfish('123456');
     }
   }
   blowfishService.encrypt = function(message) {
-    bf.encrypt(message); 
+    return blowfishService.toAscii(message); 
   }
-  blowfishService.decrypt = function(encryptedMessage){
-    bf.decrypt(encryptedMessage);
+  blowfishService.decrypt = function(asciiString){
+    return blowfishService.fromAscii(asciiString);
   }
+
+
+blowfishService.toAscii = function(message){
+ var ascii="";
+  if(message.length>0)
+    for(i=0; i<message.length; i++)
+    {
+      var c = " "+message.charCodeAt(i);
+      while(c.length < 3)
+       c = "0"+c;
+      ascii += " " + c;
+    }
+  return(ascii);
+}
+blowfishService.fromAscii = function(asciiString){
+
+    var plaintext = "";
+    for(var i=0; i<asciiString.length; i++){
+      if(asciiString.charAt(i)!=" "){
+        console.log(asciiString.substr(i,3));
+      plaintext += String.fromCharCode(asciiString.substr(i,3));
+      i = i + 3;
+      }
+    }
+    return plaintext;
+}
 
 
 

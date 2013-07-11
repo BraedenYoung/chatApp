@@ -11,7 +11,7 @@ chatApp.controller('chatController', function($scope, $timeout, chatRoom, blowfi
 
 
 	dpd.messages.on('create', function(message) {
-    	$scope.messages = chatRoom.getMessages();
+    	$scope.messages = chatRoom.getMessages($scope.key);
     	$scope.$apply();
   	});
 
@@ -29,7 +29,7 @@ chatApp.controller('chatController', function($scope, $timeout, chatRoom, blowfi
 	
 	$scope.addMessage = function(){
 	
-		chatRoom.addMessage($scope.sender,$scope.message);
+		chatRoom.addMessage($scope.sender, $scope.message, $scope.key);
 	}	
 	
 	$scope.addOrDeleteUsers = function(change1){

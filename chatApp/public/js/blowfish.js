@@ -1,3 +1,5 @@
+
+
 // Javascript BlowFish implementation
 // @Version 2.0 
 
@@ -552,7 +554,6 @@ document.writeln(ciphertext);
 document.writeln(plaintext);
 
 */
-
 
 
 

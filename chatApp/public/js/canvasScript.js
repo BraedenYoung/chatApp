@@ -2,11 +2,12 @@
 
     var cW = 900;
     var cH = 550;
-    window.onload = windowReady(33);
+    var ascii_start = 33;
+
     /**
     windowReady
     */
-    function windowReady(ascii_start) {
+    function startCanvas(ascii_start) {
         // Load the context of the canvas
         var canvas = document.getElementById('canvasId')
         var ctx = canvas.getContext("2d");
