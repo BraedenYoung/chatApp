@@ -13,8 +13,9 @@
 				</div>
 
 				<div class="three columns" style="width:33%;">
-					<a class="button"  ng-click="addOrDeleteUsers(); change1 =! change1">{{change1 && "Change" || "Done"}}<a>
+					<a class="button"  ng-click="addOrDeleteUsers(change1); change1 =! change1">{{change1 && "Change" || "Done"}}<a>
 				</div>
+
 				<div class="six columns" style="width:66%;">
 					<span ng-show="change2">
 						<h2 style="display:inline;">Key: </h2>

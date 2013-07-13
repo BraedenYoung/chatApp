@@ -1,4 +1,4 @@
-chatApp.controller('chatController', function($scope, $timeout, chatRoom, blowfish){
+chatApp.controller('chatController', function($scope, $timeout, chatRoom, cipher){
 
 	$scope.messages = chatRoom.getMessages();	
 	$scope.users = chatRoom.getUsers();	    	
@@ -14,19 +14,22 @@ chatApp.controller('chatController', function($scope, $timeout, chatRoom, blowfi
     	$scope.messages = chatRoom.getMessages($scope.key);
     	$scope.$apply();
   	});
-
 	dpd.messages.on('deleted', function(message) {
     	$scope.messages = chatRoom.getMessages();
     });
+	 //not working V
+	 dpd.users.logout(function(success, err) {
+	  if(err) return console.log(err);
+	  console.log(success); // true
+	});
 
   	dpd.users.on('create', function(users){ 
   		$scope.users = chatRoom.getUsers();
   	});
-
  	dpd.users.on('delete', function(users){
  		$scope.users = chatRoom.getUsers;
  	});
-	
+
 	$scope.addMessage = function(){
 	
 		chatRoom.addMessage($scope.sender, $scope.message, $scope.key);
@@ -46,15 +49,12 @@ chatApp.controller('chatController', function($scope, $timeout, chatRoom, blowfi
 	$scope.deleteMessage = function(){
 		chatRoom.deleteMessage();
 	}
-	$scope.deleteUser = function(){
-		chatRoom.deleteMessage();
-	}
-	
 	$scope.addKey = function(){
-		blowfish.init($scope.key);
+		cipher.init($scope.key);
 	}
-	$scope.getKey = function(){
-		return $scope.key;
+	$scope.addKey = function(){
+		cipher.convertKey($scope.key);
+		
 	}
 	
 	/*

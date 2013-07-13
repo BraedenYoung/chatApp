@@ -1,1 +1,0 @@
-emit('users:delete', this); 
