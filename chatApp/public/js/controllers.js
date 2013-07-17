@@ -11,20 +11,18 @@ chatApp.controller('chatController', function($scope, $timeout, chatRoom, cipher
 
 
 	dpd.messages.on('create', function(message) {
-    	$scope.messages = chatRoom.getMessages($scope.key);
+    	$scope.messages = chatRoom.getMessages();
     	$scope.$apply();
   	});
+
+  	/*
 	dpd.messages.on('deleted', function(message) {
     	$scope.messages = chatRoom.getMessages();
     });
-	 //not working V
-	 dpd.users.logout(function(success, err) {
-	  if(err) return console.log(err);
-	  console.log(success); // true
-	});
-
+	*/
   	dpd.users.on('create', function(users){ 
   		$scope.users = chatRoom.getUsers();
+  		$scope.$apply();
   	});
  	dpd.users.on('delete', function(users){
  		$scope.users = chatRoom.getUsers;
@@ -49,12 +47,9 @@ chatApp.controller('chatController', function($scope, $timeout, chatRoom, cipher
 	$scope.deleteMessage = function(){
 		chatRoom.deleteMessage();
 	}
-	$scope.addKey = function(){
-		cipher.init($scope.key);
-	}
+
 	$scope.addKey = function(){
 		cipher.convertKey($scope.key);
-		
 	}
 	
 	/*

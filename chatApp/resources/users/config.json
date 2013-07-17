@@ -1,5 +1,5 @@
 {
-	"type": "UserCollection",
+	"type": "Collection",
 	"properties": {
 		"roomID": {
 			"name": "roomID",
@@ -8,6 +8,14 @@
 			"required": true,
 			"id": "roomID",
 			"order": 0
+		},
+		"username": {
+			"name": "username",
+			"type": "string",
+			"typeLabel": "string",
+			"required": false,
+			"id": "username",
+			"order": 1
 		}
 	}
 }
