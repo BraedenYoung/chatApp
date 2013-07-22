@@ -1,5 +1,5 @@
 
-<div id="mainWindow" class="content ">
+<div id="mainWindow" class="content " ng-init="refresh()" >
 	
 	
 		<div class="row twelve columns">
@@ -34,7 +34,7 @@
 
 			<div class="small-9 columns">
 				<ul id="conversation">
-					<li class="panel message" ng-repeat="message in messages.data">
+					<li class="panel message" ng-repeat="message in messages.data | orderBy:messages.data.date">
 						<div class="title">
 							<h5 style= "color:#2BA6CB">{{message.sender}}:</h5>
 							<span class="floatRight">{{getDate(message.date)}}</span>
@@ -66,6 +66,7 @@
 				<h3 style="color:#2BA6CB">Online Users</h3>
 
 				<li class="panel" ng-repeat="user in users.data">
+
 					<h5>{{user.username}}</h5>
 				</li>
 				<li class="panel nomessage" ng-show="users.data.length == 0">

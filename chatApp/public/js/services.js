@@ -1,24 +1,24 @@
-chatApp.factory('chatRoom', function($routeParams, $http, cipher){
+
+
+chatApp.factory('chatRoom', function($route, $http, cipher){
 
 
   var roomService = {};
 
   roomService.messageText = "";
 
-  roomService.roomID = $routeParams.roomID;
-
+  roomService.roomID =  function(){
+    return $route.current.params.roomID;
+  };
   /*
   roomService.init = function(){
     canvasSript.startCanvas(33);
   }
   */
 
-  roomService.gotoRoom = function(){
-    window.location = "#/chatRoom/"+$scope.roomID;
-
-  };
-  roomService.getMessages = function(key){
-    return $http.get('/messages?roomID='+roomService.roomID)
+ 
+  roomService.getMessages = function(){
+    return $http.get('/messages?roomID='+roomService.roomID())
     .success(function(messages){
 
       messages.forEach(function(message){
@@ -32,22 +32,24 @@ chatApp.factory('chatRoom', function($routeParams, $http, cipher){
     });
   };
   roomService.addMessage = function(sender, message){
-    var encryptMessage = ''; 
+
+    var encryptedMessage = ''; 
     if(message){
       encryptedMessage = cipher.encrypt(message); 
     }
     $http.post('/messages',{
       sender: sender,
       message: encryptedMessage,
-      roomID: roomService.roomID
+      roomID: roomService.roomID()
     }).success(function(message){
       roomService.messageText = "";
     }).error(function(err){
-      return alert(err.message || " An error has occurred");
+     console.error(err);
+      return alert(err.message || "Sorry, your name has to be greater than 2 characters");
     });
   };
   roomService.getUsers = function(){
-    return $http.get('/users?roomID='+roomService.roomID)
+    return $http.get('/users?roomID='+roomService.roomID())
     .success(function(users){
       return users.data;
     }).error(function(err){
@@ -55,9 +57,10 @@ chatApp.factory('chatRoom', function($routeParams, $http, cipher){
     });
   };
   roomService.addUser = function(sender){
+    
     $http.post('/users',{
       username: sender,
-      roomID: roomService.roomID
+      roomID: roomService.roomID()
     }).success(function(users){
       roomService.username = "";
     //  return users.data;
@@ -70,13 +73,13 @@ chatApp.factory('chatRoom', function($routeParams, $http, cipher){
   };
   roomService.deleteUser = function(userToBeDeleted){
 
-
-    return $http.get('/users?roomID='+roomService.roomID)
+debugger;
+    $http.get('/users?roomID='+roomService.roomID())
 
     .success(function(users){
       users.forEach(function(user){
-        if(user.ID == userToBeDeleted.ID){
-          dpd.users.del(user.ID, function(success, err) {
+        if(user.username == userToBeDeleted){
+          dpd.users.del(user.id, function(success, err) {
             if(err) return console.log(err);
             console.log(success); // true
           });
@@ -114,9 +117,6 @@ cipherService.init = function(key){
   }
 
 }
-
-
-
 cipherService.encrypt = function(plaintextMessage, key) {
 
     var encyrptedmessage = cipherService.toAscii(plaintextMessage);
